@@ -1,0 +1,28 @@
+{
+  "name": "nft_marketplace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.1",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.3",
+    "@nomicfoundation/hardhat-toolbox": "^1.0.1",
+    "@nomiclabs/hardhat-ganache": "^2.0.1",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "hardhat": "^2.10.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-solidity": "^1.0.0-dev.23",
+    "web3": "^1.7.4"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.0",
+    "ethers": "^5.6.9",
+    "openzeppelin-test-helpers": "^0.5.1"
+  }
+}
