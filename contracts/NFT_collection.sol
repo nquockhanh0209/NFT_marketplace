@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.0 ;
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./ourNFT.sol";
 
@@ -58,18 +58,44 @@ contract collection {
             allCollection[myCollectionId].collectionOwner
         );
     }
-
-    function storeCollection(uint256 myCollectionId, uint256 newtokenId)
-        public
-    {
+    function storeCollection(uint256 myCollectionId, uint256 newtokenId) public {
         allCollection[myCollectionId].NFTsId.push(newtokenId);
     }
-
-    function showCollectionNFT(uint256 myCollectionId)
-        external
-        view
-        returns (uint256[] memory)
-    {
+    function showCollectionNFT(uint256 myCollectionId) external view returns(uint256[] memory) {
         return allCollection[myCollectionId].NFTsId;
+    }
+    address public nftAddress;
+    function setNFTcontractAddress(address NFTcontract) public{
+        nftAddress = NFTcontract;
+    }
+    function transferFromCollectionWithSig(
+        address from,
+        address to,
+        uint256 tokenId,
+        uint256 nonce,
+        uint256 deadline,
+        bool isPermitted,
+        uint8 v,
+        bytes32 r,
+        bytes32 s) public {
+        //transferWithPermission(from, to, tokenId, nonce, deadline, isPermitted, v, r, s);
+        (bool success,) = nftAddress.call(abi.encodeWithSignature(
+            "transferWithPermission(address, address, uint256, uint256, uint256, bool, uint256, bytes32, bytes32)",
+            from,
+            to,
+            tokenId,
+            nonce,
+            deadline,
+            isPermitted,
+            v,
+            r,
+            s));
+        
+        // (bool success,) = nftAddress.call(abi.encodeWithSignature(
+        //     "test_bool(bool)",
+        //     isPermitted
+        // ));
+        require(success,"fail to call");
+        
     }
 }

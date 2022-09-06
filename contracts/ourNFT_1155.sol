@@ -4,9 +4,11 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
-
+import "./Permit.sol";
 //import "./NFT_collection.sol";
 contract NFT_1155 is ERC1155, ERC1155URIStorage {
+    using Permit for Permit.Permitted;
+    Permit.Permitted private permission;
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     mapping(uint256 => mapping(address => uint256)) private owner_balances;
@@ -16,7 +18,7 @@ contract NFT_1155 is ERC1155, ERC1155URIStorage {
 
     //mint NFTs, set NFT URI
     //return NFT id
-
+    
     
     function createSeveral1155NFT(
         address creator,
